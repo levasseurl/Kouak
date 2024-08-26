@@ -1,0 +1,67 @@
+services:
+  kouak-db:
+    container_name: kouak-db
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    networks:
+      - kouak-backend
+    restart: always
+
+  kouak-adminer:
+    container_name: kouak-adminer
+    image: adminer
+    ports:
+      - 8080:8080
+    networks:
+      - kouak-backend
+      - kouak-frontend
+    restart: always
+    depends_on:
+      - kouak-db
+
+  kouak-api:
+    container_name: kouak-api
+    image: "node:22.1.0"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./api:/home/node/app
+    ports:
+      - "3000:3000"
+    networks:
+      - kouak-backend
+      - kouak-frontend
+    command: "npm start"
+    restart: always
+    depends_on:
+      - kouak-db
+
+  # kouak-frontend:
+  #   container_name: kouak-frontend
+  #   image: "node:22.1.0"
+  #   user: "node"
+  #   working_dir: /home/node/app
+  #   environment:
+  #     - NODE_ENV=development
+  #   volumes:
+  #     - ./frontend:/home/node/app
+  #   ports:
+  #     - "3001:3000"
+  #   networks:
+  #     - kouak-backend
+  #     - kouak-frontend
+  #   command: "npm run dev"
+  #   restart: always
+  #   depends_on:
+  #     - kouak-db
+
+networks:
+  kouak-frontend:
+    name: kouak-frontend
+
+  kouak-backend:
+    name: kouak-backend
+    internal: true
