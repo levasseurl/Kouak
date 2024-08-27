@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "example",
+    "database": "kouak",
+    "host": "kouak-db",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "example",
+    "database": "database_test",
+    "host": "kouak-db",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "example",
+    "database": "database_production",
+    "host": "kouak-db",
+    "dialect": "mysql"
+  }
+}

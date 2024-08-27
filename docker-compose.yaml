@@ -4,6 +4,7 @@ services:
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: kouak
     networks:
       - kouak-backend
     restart: always
