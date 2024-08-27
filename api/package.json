@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "migrate": "npx sequelize-cli db:migrate"
   },
   "dependencies": {
     "express": "^4.19.2",

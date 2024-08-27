@@ -29,13 +29,13 @@ services:
     environment:
       - NODE_ENV=development
     volumes:
-      - ./api:/home/node/app
+      - ./api:/home/node/app:rw
     ports:
       - "3000:3000"
     networks:
       - kouak-backend
       - kouak-frontend
-    command: "npm start"
+    command: "/home/node/app/init.sh"
     restart: always
     depends_on:
       - kouak-db
