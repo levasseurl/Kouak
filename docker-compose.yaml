@@ -29,9 +29,7 @@ services:
     environment:
       - NODE_ENV=development
     volumes:
-      - ./api:/home/node/app:rw
-    expose:
-      - 3000
+      - ./api:/home/node/app
     ports:
       - "3000:3000"
     networks:
@@ -42,24 +40,25 @@ services:
     depends_on:
       - kouak-db
 
-  # kouak-frontend:
-  #   container_name: kouak-frontend
-  #   image: "node:22.1.0"
-  #   user: "node"
-  #   working_dir: /home/node/app
-  #   environment:
-  #     - NODE_ENV=development
-  #   volumes:
-  #     - ./frontend:/home/node/app
-  #   ports:
-  #     - "3001:3000"
-  #   networks:
-  #     - kouak-backend
-  #     - kouak-frontend
-  #   command: "npm run dev"
-  #   restart: always
-  #   depends_on:
-  #     - kouak-db
+  kouak-frontend:
+    container_name: kouak-frontend
+    image: "node:22.1.0"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./frontend:/home/node/app
+    expose:
+      - 5173
+    ports:
+      - "5173:5173"
+    networks:
+      - kouak-frontend
+    command: "/home/node/app/init.sh"
+    restart: always
+    depends_on:
+      - kouak-api
 
 networks:
   kouak-frontend:
