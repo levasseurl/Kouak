@@ -12,7 +12,7 @@ module.exports = {
       content: {
         type: Sequelize.STRING
       },
-      publish_date: {
+      publishDate: {
         type: Sequelize.DATE
       },
       createdAt: {

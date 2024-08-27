@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Message.init({
     content: DataTypes.STRING,
-    publish_date: DataTypes.DATE
+    publishDate: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Message',
