@@ -1,13 +1,25 @@
 # Kouak
 
 ## API - Installation
-```cd ./api/```
-```npm install```
+```console
+cd ./api/
+````
+```console
+npm install
+````
 
 ## Frontend - Installation
-```cd ../frontend/```
-```npm install```
+``` console
+cd ../frontend/
+```
+``` console
+npm install
+```
 
 ## Lancer l'application
-```cd ..```
-```docker compose up -d```
+``` console
+cd ..
+```
+``` console
+docker compose up -d
+```
