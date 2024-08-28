@@ -4,7 +4,7 @@ import MenuDrawer from '../navigations/MenuDrawer';
 import UserDrawer from '../navigations/UserDrawer';
 
 
-const ChatMenu = ({ messages = [], width = "100%", height = "auto" }) => {
+const ChatMenu = ({ width = "100%", height = "auto", onMessageSend }) => {
 
   return (
     <Box
@@ -20,7 +20,7 @@ const ChatMenu = ({ messages = [], width = "100%", height = "auto" }) => {
         {/* <Button variant="contained">Inscription</Button>
         <Button variant="contained">Connexion</Button> */}
         <MenuDrawer></MenuDrawer>
-        <MessageInput></MessageInput>
+        <MessageInput onMessageSend={onMessageSend}></MessageInput>
         <UserDrawer></UserDrawer>
     </Box>
   );

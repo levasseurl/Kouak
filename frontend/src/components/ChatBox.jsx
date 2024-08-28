@@ -2,8 +2,8 @@ import { Box, List, ListSubheader } from '@mui/material';
 import MessageBox from './MessageBox';
 
 
-const ChatBox = ({ messages = [], width = "100%", height = "100%" }) => {
-
+const ChatBox = ({ messages, width = "100%", height = "100%" }) => {
+  
   return (
     <Box
       sx={{

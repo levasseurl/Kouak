@@ -31,10 +31,10 @@ const app = express();
 const httpServer = createServer(app);
 
 // Web Socket
-const io = new Server(httpServer, { cors: { origin: "0.0.0.0" } });
+const io = new Server(httpServer, { cors: { origin: "*" } });
 io.on("connection", (socket) => {
   socket.on("sendMessage", (args) => {
-    io.emit("newMessage", "OK");
+    io.emit("newMessage", args);
   });
 
   socket.on("registration", (args) => {

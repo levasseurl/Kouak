@@ -2,13 +2,15 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
 
-const MessageInput = () => {
+const MessageInput = ({ onMessageSend }) => {
+
   const formik = useFormik({
     initialValues: {
       message: '',
     },
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
+      onMessageSend(values);
     },
   });
   return (
