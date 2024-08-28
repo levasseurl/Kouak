@@ -5,13 +5,13 @@ const { authenticateToken } = require('../middleware/authToken');
 const { getUsers, getUser, addUser, editUser, deleteUser, loginUser } = require('../controllers/user');
 
 // getUsers
-router.get('/', authenticateToken, async function (req, res, next) {
+router.get('/', async function (req, res, next) {
     const result = await getUsers();
     res.status(result.status).send(result.message);
 });
 
 // getUser
-router.get('/:id', authenticateToken, async function (req, res, next) {
+router.get('/:id', async function (req, res, next) {
     const id = req.params.id;
     const result = await getUser(id);
     res.status(result.status).send(result.message);

@@ -1,10 +1,10 @@
 import { Box, IconButton } from '@mui/material';
-import RegistrationForm from '../components/RegistrationForm';
+import RegistrationForm from '../forms/RegistrationForm';
 import { ArrowBackSharp } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 
-const Registration = () => {
+const Registration = ({ onRegistration }) => {
     const navigate = useNavigate();
 
     return (
@@ -23,7 +23,7 @@ const Registration = () => {
                     color: '#FFFFF0',
                 }}/>
             </IconButton>
-            <RegistrationForm></RegistrationForm>
+            <RegistrationForm onRegistration={onRegistration}></RegistrationForm>
         </Box>
     );
 }

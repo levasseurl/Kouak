@@ -1,10 +1,10 @@
 import { Box, IconButton } from '@mui/material';
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../forms/LoginForm';
 import { ArrowBackSharp } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 
-const Login = () => {
+const Login = ({ onLogin }) => {
     const navigate = useNavigate();
 
     return (
@@ -23,7 +23,7 @@ const Login = () => {
                     color: '#FFFFF0',
                 }}/>
             </IconButton>
-            <LoginForm></LoginForm>
+            <LoginForm onLogin={onLogin}></LoginForm>
         </Box>
     );
 }

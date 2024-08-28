@@ -1,8 +1,11 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ onRegistration }) => {
+  const navigate = useNavigate()
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -10,7 +13,9 @@ const RegistrationForm = () => {
       password: '',
     },
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
+      onRegistration(values);
+      navigate('/');
     },
   });
   return (

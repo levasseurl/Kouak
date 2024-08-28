@@ -18,12 +18,20 @@ function App() {
     socket.emit("sendMessage", values);
   };
 
+  const handleRegistration = async (values) => {
+    socket.emit("registration", values);
+  };
+
+  const handleLogin = async (values) => {
+    socket.emit("login", values);
+  };
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Chat messages={messages} onMessageSend={handleMessageSend}/>} />
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<Registration onRegistration={handleRegistration}/>} />
+        <Route path="/login" element={<Login onLogin={handleLogin}/>} />
       </Routes>
     </Router>
   )

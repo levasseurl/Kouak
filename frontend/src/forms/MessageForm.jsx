@@ -6,7 +6,7 @@ const MessageInput = ({ onMessageSend }) => {
 
   const formik = useFormik({
     initialValues: {
-      message: '',
+      content: '',
     },
     onSubmit: values => {
       // alert(JSON.stringify(values, null, 2));
@@ -24,11 +24,11 @@ const MessageInput = ({ onMessageSend }) => {
       }}
     >
       <TextField
-        id='message'
-        name='message'
+        id='content'
+        name='content'
         type='text'
         onChange={formik.handleChange}
-        value={formik.values.message}
+        value={formik.values.content}
         variant='outlined'
         sx={{
           color: 'blue',

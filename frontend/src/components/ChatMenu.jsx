@@ -1,5 +1,5 @@
-import { Box, Button } from '@mui/material';
-import MessageInput from './MessageInput';
+import { Box } from '@mui/material';
+import MessageForm from '../forms/MessageForm';
 import MenuDrawer from '../navigations/MenuDrawer';
 import UserDrawer from '../navigations/UserDrawer';
 
@@ -17,10 +17,8 @@ const ChatMenu = ({ width = "100%", height = "auto", onMessageSend }) => {
         width: width,
       }}
     >
-        {/* <Button variant="contained">Inscription</Button>
-        <Button variant="contained">Connexion</Button> */}
         <MenuDrawer></MenuDrawer>
-        <MessageInput onMessageSend={onMessageSend}></MessageInput>
+        <MessageForm onMessageSend={onMessageSend}></MessageForm>
         <UserDrawer></UserDrawer>
     </Box>
   );
