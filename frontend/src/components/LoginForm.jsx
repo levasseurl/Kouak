@@ -50,7 +50,7 @@ const LoginForm = () => {
       >
       </TextField>
 
-      <Button type='submit'>Inscription</Button>
+      <Button type='submit'>Connexion</Button>
     </form>
   );
 };

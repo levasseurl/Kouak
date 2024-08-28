@@ -56,7 +56,8 @@ const addMessage = async (content, userId) => {
         // Create message
         const message = await Message.create(
             { 
-                content, 
+                content,
+                userId,
                 publishDate
             }
         );

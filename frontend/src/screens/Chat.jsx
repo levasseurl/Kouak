@@ -1,26 +1,9 @@
-import { useState } from 'react'
 import { Box, Typography } from '@mui/material';
 import ChatBox from '../components/ChatBox';
 import ChatMenu from '../components/ChatMenu';
-import RegistrationForm from '../components/RegistrationForm';
-import LoginForm from '../components/LoginForm';
 
 
 const Chat = ({ messages, onMessageSend }) => {
-
-    console.log("test");
-    // const [messages, setMessage] = useState([
-    //     { user: 'user1', content: 'Bonjour !' },
-    //     { user: 'user2', content: 'Salut !' },
-    //     { user: 'user1', content: 'Tout va bien ?' },
-    //     { user: 'user2', content: 'Très bien merci ?' },
-    //     { user: 'user2', content: 'Très bien merci ?' },
-    //     { user: 'user2', content: 'Très bien merci ?' },
-    //     { user: 'user2', content: 'Très bien merci ?' },
-    //     { user: 'user2', content: 'Très bien merci ?' },
-    //     { user: 'user2', content: 'Très bien merci ?' },
-    //     { user: 'user2', content: 'Très bien merci ?' },
-    // ]);
 
     return (
         <Box

@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import Chat from './screens/Chat'
 import socketIO from 'socket.io-client';
-
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Registration from './screens/Registration';
+import Login from './screens/Login';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -18,9 +19,13 @@ function App() {
   };
 
   return (
-    <>
-        <Chat messages={messages} onMessageSend={handleMessageSend} ></Chat>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Chat messages={messages} onMessageSend={handleMessageSend}/>} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
   )
 }
 

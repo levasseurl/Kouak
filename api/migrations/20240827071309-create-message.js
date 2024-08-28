@@ -12,6 +12,11 @@ module.exports = {
       content: {
         type: Sequelize.STRING
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        references: {key: 'id', model: 'Users'}
+      },
       publishDate: {
         type: Sequelize.DATE
       },
