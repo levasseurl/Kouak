@@ -1,16 +1,17 @@
 const express = require('express');
 const router = express.Router();
+const { authenticateToken } = require('../middleware/authToken');
 
 const { getUsers, getUser, addUser, editUser, deleteUser, loginUser } = require('../controllers/user');
 
 // getUsers
-router.get('/', async function (req, res, next) {
+router.get('/', authenticateToken, async function (req, res, next) {
     const result = await getUsers();
     res.status(result.status).send(result.message);
 });
 
 // getUser
-router.get('/:id', async function (req, res, next) {
+router.get('/:id', authenticateToken, async function (req, res, next) {
     const id = req.params.id;
     const result = await getUser(id);
     res.status(result.status).send(result.message);
@@ -26,7 +27,7 @@ router.post('/', async function (req, res, next) {
 });
 
 // editUser
-router.put('/:id', async function (req, res, next) {
+router.put('/:id', authenticateToken, async function (req, res, next) {
     const id = req.params.id;
     const name = req.body.name;
     const email = req.body.email;
@@ -36,7 +37,7 @@ router.put('/:id', async function (req, res, next) {
 });
 
 // deleteUser
-router.delete('/:id', async function (req, res, next) {
+router.delete('/:id', authenticateToken, async function (req, res, next) {
     const id = req.params.id;
     const result = await deleteUser(id);
     res.status(result.status).send(result.message);

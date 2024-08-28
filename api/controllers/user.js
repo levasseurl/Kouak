@@ -1,4 +1,7 @@
-const { User } = require('../models')
+const { User } = require('../models');
+// const bcrypt = require("bcrypt");
+const bcrypt = require('bcryptjs')
+const jwt = require("jsonwebtoken");
 
 const getUsers = async () => {
 
@@ -48,15 +51,18 @@ const getUser = async (id) => {
     }
 }
 
-const addUser = async (name, email, password) => {
+const addUser = async (name, email, rawPassword) => {
 
     try {
+        // Encrypt password
+        const password = await bcrypt.hash(rawPassword, 10);
+
         // Create user
         const user = await User.create(
-            { 
-                name, 
-                email, 
-                password 
+            {
+                name,
+                email,
+                password
             }
         );
 
@@ -148,16 +154,30 @@ const loginUser = async (email, password) => {
             where: {
                 email: email,
             },
+            raw: true
         });
 
         // Check if data recovered
         if (user === null) throw { name: "UserNotFoundError" };
 
+        // Compare password hash
+        const isPasswordValid = await bcrypt.compare(
+            password,
+            user.password
+        );
+
         // Check if password correct
-        if (user.password !== password) throw { name: "InvalidPasswordError" };
+        if (!isPasswordValid) throw { name: "InvalidPasswordError" };
+
+        // Generate access token
+        let token = jwt.sign(
+            { user_id: user.id },
+            process.env.SECRET_KEY,
+            { expiresIn: "12h" }
+        );
 
         // Success
-        return { status: 200, message: "Login success" };
+        return { status: 200, message: token };
 
     } catch (err) {
         const errorResponses = {

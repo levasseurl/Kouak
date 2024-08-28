@@ -1,10 +1,10 @@
 const express = require('express')
 const { Sequelize } = require('sequelize');
 const bodyParser = require('body-parser')
+require('dotenv').config();
+const { createServer } = require("http");
+const { Server } = require("socket.io");
 
-const app = express()
-
-const port = 3000
 const env = process.env.NODE_ENV || 'development';
 const config = require('./config/config')[env];
 
@@ -25,17 +25,41 @@ sequelize.authenticate().then(() => {
   console.error('Unable to connect to the database: ', error);
 });
 
-app.use(bodyParser.json());
+const port = 3000;
+
+const app = express();
+const httpServer = createServer(app);
+
+// Web Socket
+const io = new Server(httpServer, { cors: { origin: "0.0.0.0" } });
+io.on("connection", (socket) => {
+  socket.on("sendMessage", (args) => {
+    io.emit("newMessage", "OK");
+  });
+
+  socket.on("registration", (args) => {
+    io.emit("newUser", "OK");
+  });
+
+  socket.on("login", (args) => {
+    io.emit("userLogged", "OK");
+  });
+});
 
 // Routers
 const indexRouter = require('./routes/index');
 const messageRouter = require('./routes/message');
 const userRouter = require('./routes/user');
 
+app.use(bodyParser.json());
 app.use('/', indexRouter);
 app.use('/messages', messageRouter);
 app.use('/users', userRouter);
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`)
+// })
+
+httpServer.listen(port, () => {
+  console.log(`App listening on port ${port}`)
+});
