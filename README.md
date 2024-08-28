@@ -1,13 +1,13 @@
 # Kouak
 
 ## API - Installation
-`cd ./api/`
-`npm install`
+```cd ./api/```
+```npm install```
 
 ## Frontend - Installation
-`cd ../frontend/`
-`npm install`
+```cd ../frontend/```
+```npm install```
 
 ## Lancer l'application
-`cd ..`
-`docker compose up -d`
+```cd ..```
+```docker compose up -d```
